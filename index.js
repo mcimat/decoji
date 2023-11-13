@@ -18,7 +18,7 @@ const emojiArray = [
         completed: false
     },
     {
-        emoji: "🚪🏃🏼‍♂️💨",
+        emoji: "🚪🏃🏼‍♂️",
         answer: "doordash",
         hint: "Food delivery service",
         completed: false
@@ -49,18 +49,45 @@ const emojiArray = [
     }
 ];
 
+let currentEmoji = null;
 let score = 0;
 let incorrectAttempts = 0;
-let currentEmojiIndex = -1;
-
-function getRandomIndex() {
-    return Math.floor(Math.random() * emojiArray.length);
-}
 
 function displayRandomEmoji() {
-    currentEmojiIndex = getRandomIndex();
-    document.querySelector(".shown-emoji").innerText = emojiArray[currentEmojiIndex].emoji;
-    document.querySelector(".emoji-length").innerText = `Answer Length: ${emojiArray[currentEmojiIndex].answer.length}`;
+    let uncompletedEmojis = emojiArray.filter(emoji => !emoji.completed);
+    if (uncompletedEmojis.length === 0) {
+        alert("All emojis have been completed!");
+        return;
+    }
+
+    currentEmoji = uncompletedEmojis[Math.floor(Math.random() * uncompletedEmojis.length)];
+    document.querySelector(".shown-emoji").innerText = currentEmoji.emoji;
+    document.querySelector(".emoji-length").innerText = `Answer Length: ${currentEmoji.answer.length}`;
+}
+
+function answerResult(event) {
+    event.preventDefault();
+    if (!currentEmoji) return;
+
+    const userInput = document.querySelector(".js-input").value.toLowerCase();
+    const correctAnswer = currentEmoji.answer;
+
+    if (userInput === correctAnswer) {
+        alert("Correct!");
+        score += 1;
+        currentEmoji.completed = true;
+        displayRandomEmoji();
+    } else if (!userInput) {
+        alert("Empty input");
+    } else {
+        incorrectAttempts += 1;
+        if (incorrectAttempts >= 3) {
+            alert("You lose! Try again.");
+            currentEmoji = null;
+        }
+    }
+    document.querySelector(".js-input").value = "";
+    updateScore();
 }
 
 function updateScore() {
@@ -69,38 +96,13 @@ function updateScore() {
 }
 
 function getHint() {
-    if (currentEmojiIndex !== -1) {
-        alert(emojiArray[currentEmojiIndex].hint);
-    }
-}
-
-function answerResult(event) {
-    event.preventDefault();
-    if (currentEmojiIndex === -1) return;
-
-    const userInput = document.querySelector(".js-input").value;
-    const correctAnswer = emojiArray[currentEmojiIndex].answer;
-
-    if (userInput.toLowerCase() === correctAnswer) {
-        alert("Correct!");
-        score += 1;
-        emojiArray[currentEmojiIndex].completed = true;
-        document.querySelector(".js-input").value = "";
-        displayRandomEmoji();
-    } else if (!userInput) {
-        alert("Empty input");
-    } else {
-        incorrectAttempts += 1;
-        if (incorrectAttempts >= 3) {
-            alert("You lose! Try again.");
-            currentEmojiIndex = -1;
-        }
-    }
-    updateScore();
-    console.log(emojiArray);
+    alert(currentEmoji.hint);
 }
 
 function restartGame() {
+    for (let i = 0; i < emojiArray.length; i++) {
+        emojiArray[i].completed = false;
+    }
     score = 0;
     incorrectAttempts = 0;
     document.querySelector(".js-input").value = "";
