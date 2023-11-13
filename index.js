@@ -12,19 +12,44 @@ const emojiArray = [
         completed: false
     },
     {
-        emoji: "🐓🕺",
+        emoji: "🐓🕺🏼",
         answer: "chicken dance",
         hint: "A popular dance",
         completed: false
     },
     {
-        emoji: "🚪💨",
+        emoji: "🚪🏃🏼‍♂️💨",
         answer: "doordash",
         hint: "Food delivery service",
+        completed: false
+    },
+    {
+        emoji: "🦁👑",
+        answer: "lion king",
+        hint: "Disney movie",
+        completed: false
+    },
+    {
+        emoji: "🕷️🚶🏼‍♂️",
+        answer: "spiderman",
+        hint: "Marvel superhero",
+        completed: false
+    },
+    {
+        emoji: "📼🐛",
+        answer: "tapeworm",
+        hint: "A parasite",
+        completed: false
+    },
+    {
+        emoji: "👻🏠",
+        answer: "haunted house",
+        hint: "Spooky",
         completed: false
     }
 ];
 
+let score = 0;
 let incorrectAttempts = 0;
 let currentEmojiIndex = -1;
 
@@ -39,7 +64,8 @@ function displayRandomEmoji() {
 }
 
 function updateScore() {
-    document.querySelector(".js-score").innerText = `Incorrect: ${incorrectAttempts}`;
+    document.querySelector(".js-score").innerText = `Score: ${score}`;
+    document.querySelector(".js-incorrect").innerText = `Incorrect: ${incorrectAttempts}`;
 }
 
 function getHint() {
@@ -57,6 +83,7 @@ function answerResult(event) {
 
     if (userInput === correctAnswer) {
         alert("Correct!");
+        score += 1;
         emojiArray[currentEmojiIndex].completed = true;
         displayRandomEmoji();
     } else if (!userInput) {
@@ -64,16 +91,19 @@ function answerResult(event) {
     } else {
         incorrectAttempts += 1;
         if (incorrectAttempts >= 3) {
-            alert("Game Over!");
+            alert("You lose! Try again.");
             currentEmojiIndex = -1;
         }
     }
     updateScore();
+    userInput.value = "";
     console.log(emojiArray);
 }
 
 function restartGame() {
+    score = 0;
     incorrectAttempts = 0;
+    document.querySelector(".js-input").value = "";
     updateScore();
     displayRandomEmoji();
 }
