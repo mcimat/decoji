@@ -78,13 +78,14 @@ function answerResult(event) {
     event.preventDefault();
     if (currentEmojiIndex === -1) return;
 
-    const userInput = document.querySelector(".js-input").value.toLowerCase();
+    const userInput = document.querySelector(".js-input").value;
     const correctAnswer = emojiArray[currentEmojiIndex].answer;
 
-    if (userInput === correctAnswer) {
+    if (userInput.toLowerCase() === correctAnswer) {
         alert("Correct!");
         score += 1;
         emojiArray[currentEmojiIndex].completed = true;
+        document.querySelector(".js-input").value = "";
         displayRandomEmoji();
     } else if (!userInput) {
         alert("Empty input");
@@ -96,7 +97,6 @@ function answerResult(event) {
         }
     }
     updateScore();
-    userInput.value = "";
     console.log(emojiArray);
 }
 
