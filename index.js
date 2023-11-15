@@ -62,7 +62,7 @@ function displayRandomEmoji() {
 
     currentEmoji = uncompletedEmojis[Math.floor(Math.random() * uncompletedEmojis.length)];
     document.querySelector(".shown-emoji").innerText = currentEmoji.emoji;
-    document.querySelector(".emoji-length").innerText = `Answer Length: ${currentEmoji.answer.length}`;
+    document.querySelector(".js-input").placeholder  = `Answer Length: ${currentEmoji.answer.length}`;
 }
 
 function answerResult(event) {
