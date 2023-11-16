@@ -56,6 +56,9 @@ let incorrectAttempts = 0;
 function displayRandomEmoji() {
     let uncompletedEmojis = emojiArray.filter(emoji => !emoji.completed);
     if (uncompletedEmojis.length === 0) {
+        currentEmoji = null;
+        document.querySelector(".js-input").disabled = true;
+        document.querySelector(".js-input").placeholder  = `Complete!`;
         alert("All emojis have been completed!");
         return;
     }
@@ -82,6 +85,8 @@ function answerResult(event) {
     } else {
         incorrectAttempts += 1;
         if (incorrectAttempts >= 3) {
+            document.querySelector(".js-input").disabled = true;
+            document.querySelector(".js-input").placeholder  = `Game Over!`;
             alert("You lose! Try again.");
             currentEmoji = null;
         }
@@ -105,6 +110,7 @@ function restartGame() {
     }
     score = 0;
     incorrectAttempts = 0;
+    document.querySelector(".js-input").disabled = false;
     document.querySelector(".js-input").value = "";
     updateScore();
     displayRandomEmoji();
