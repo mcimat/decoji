@@ -2,7 +2,7 @@ const emojiArray = [
     {
         emoji: "👨🏼‍🌾🏪",
         answer: "farmers market",
-        hint: "A market",
+        hint: "Type of market",
         completed: false
     },
     {
@@ -14,7 +14,7 @@ const emojiArray = [
     {
         emoji: "🐓🕺🏼",
         answer: "chicken dance",
-        hint: "A popular dance",
+        hint: "Popular dance",
         completed: false
     },
     {
@@ -38,13 +38,49 @@ const emojiArray = [
     {
         emoji: "📼🐛",
         answer: "tapeworm",
-        hint: "A parasite",
+        hint: "Parasite",
         completed: false
     },
     {
         emoji: "👻🏠",
         answer: "haunted house",
         hint: "Spooky",
+        completed: false
+    },
+    {
+        emoji: "⌚️🐶",
+        answer: "watch dog",
+        hint: "We could all use one of these",
+        completed: false
+    },
+    {
+        emoji: "🔍🐟",
+        answer: "finding nemo",
+        hint: "Disney movie",
+        completed: false
+    },
+    {
+        emoji: "🗻💦",
+        answer: "mountain dew",
+        hint: "Fizzy drink",
+        completed: false
+    },
+    {
+        emoji: "⭐️💵",
+        answer: "starbucks",
+        hint: "Coffee shop",
+        completed: false
+    },
+    {
+        emoji: "🧈☝🏼",
+        answer: "butterfinger",
+        hint: "Type of candy",
+        completed: false
+    },
+    {
+        emoji: "🤖👮🏼‍♂️",
+        answer: "robocop",
+        hint: "Film series",
         completed: false
     }
 ];
