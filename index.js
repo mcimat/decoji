@@ -1,19 +1,19 @@
 const emojiArray = [
     {
         emoji: "👨🏼‍🌾🏪",
-        answer: "farmers market",
+        answer: "farmersmarket",
         hint: "Type of market",
         completed: false
     },
     {
         emoji: "🍇🪨",
-        answer: "fruity pebbles",
+        answer: "fruitypebbles",
         hint: "Flint Stones cereal",
         completed: false
     },
     {
         emoji: "🐓🕺🏼",
-        answer: "chicken dance",
+        answer: "chickendance",
         hint: "Popular dance",
         completed: false
     },
@@ -25,7 +25,7 @@ const emojiArray = [
     },
     {
         emoji: "🦁👑",
-        answer: "lion king",
+        answer: "lionking",
         hint: "Disney movie",
         completed: false
     },
@@ -43,25 +43,25 @@ const emojiArray = [
     },
     {
         emoji: "👻🏠",
-        answer: "haunted house",
+        answer: "hauntedhouse",
         hint: "Spooky",
         completed: false
     },
     {
         emoji: "⌚️🐶",
-        answer: "watch dog",
+        answer: "watchdog",
         hint: "We could all use one of these",
         completed: false
     },
     {
         emoji: "🔍🐟",
-        answer: "finding nemo",
+        answer: "findingnemo",
         hint: "Disney movie",
         completed: false
     },
     {
         emoji: "🗻💦",
-        answer: "mountain dew",
+        answer: "mountaindew",
         hint: "Fizzy drink",
         completed: false
     },
@@ -108,7 +108,7 @@ function answerResult(event) {
     event.preventDefault();
     if (!currentEmoji) return;
 
-    const userInput = document.querySelector(".js-input").value.toLowerCase();
+    const userInput = document.querySelector(".js-input").value.toLowerCase().replace(/\s/g, "");
     const correctAnswer = currentEmoji.answer;
 
     if (userInput === correctAnswer) {
