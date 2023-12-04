@@ -8,23 +8,23 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center">
-    <div class="md:container md:mx-auto p-4 text-center">
-        <div class="main text-center">
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="p-4 text-center md:container md:mx-auto">
+        <div class="text-center main">
             <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"><span class="text-indigo-500 dark:text-indigo-400">Dec</span>ode the Em<span class="text-indigo-500 dark:text-indigo-400">oji</span></h1>
-            <h1 class="shown-emoji text-6xl mt-4"></h1>
+            <h1 class="mt-4 text-6xl shown-emoji"></h1>
         </div>
-        <h3 class="text-xl mt-4">Enter your answer below</h3>
+        <h3 class="mt-4 text-xl">Enter your answer below</h3>
         <form onsubmit="return answerResult(event)" class="mt-4">
-            <p class="emoji-length text-gray-500"></p>
-            <input class="js-input w-full py-2 px-3 rounded border border-gray-400 focus:outline-none focus:border-indigo-600 max-w-xl" type="text" />
+            <p class="text-gray-500 emoji-length"></p>
+            <input class="w-full max-w-xl px-3 py-2 border border-gray-400 rounded js-input focus:outline-none focus:border-indigo-600" type="text" />
             <br>
-            <button type="submit" class="mt-2 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 focus:outline-none">Submit</button>
+            <button type="submit" class="px-4 py-2 mt-2 text-white bg-green-500 rounded hover:bg-green-600 focus:outline-none">Submit</button>
         </form>
-        <button type="button" onclick="getHint()" class="js-hint mt-2 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none">Hint</button>
-        <button type="button" onclick="restartGame()" class="mt-2 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 focus:outline-none">Restart</button>        
-        <h3 class="js-score text-xl mt-4"></h3>
-        <h3 class="js-incorrect text-xl mb-4"></h3>
+        <button type="button" onclick="getHint()" class="px-4 py-2 mt-2 text-white bg-blue-500 rounded js-hint hover:bg-blue-600 focus:outline-none">Hint</button>
+        <button type="button" onclick="restartGame()" class="px-4 py-2 mt-2 text-white bg-red-500 rounded hover:bg-red-600 focus:outline-none">Restart</button>        
+        <h3 class="mt-4 text-xl js-score"></h3>
+        <h3 class="mb-4 text-xl js-incorrect"></h3>
     </div>
 </body>
 <script src="index.js"></script>
