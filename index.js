@@ -89,13 +89,17 @@ let currentEmoji = null;
 let score = 0;
 let incorrectAttempts = 0;
 
+window.addEventListener('load', () => {
+    displayRandomEmoji();
+    updateScore();
+});
+
 function displayRandomEmoji() {
     let uncompletedEmojis = emojiArray.filter(emoji => !emoji.completed);
     if (uncompletedEmojis.length === 0) {
         currentEmoji = null;
         document.querySelector(".js-input").disabled = true;
         document.querySelector(".js-input").placeholder  = `Complete!`;
-        alert("All emojis have been completed!");
         return;
     }
 
@@ -112,18 +116,36 @@ function answerResult(event) {
     const correctAnswer = currentEmoji.answer;
 
     if (userInput === correctAnswer) {
-        alert("Correct!");
+        Swal.fire({
+            title: "Correct",
+            text: "You got it right!",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 1500
+        });
         score += 1;
         currentEmoji.completed = true;
         displayRandomEmoji();
     } else if (!userInput) {
-        alert("Empty input");
+        Swal.fire({
+            title: "Empty Input",
+            text: "The input field is empty",
+            icon: "warning",
+            showConfirmButton: false,
+            timer: 1500
+        });
     } else {
         incorrectAttempts += 1;
+        Swal.fire({
+            title: "Incorrect",
+            text: "Try again!",
+            icon: "error",
+            showConfirmButton: false,
+            timer: 1500
+        });
         if (incorrectAttempts >= 3) {
             document.querySelector(".js-input").disabled = true;
             document.querySelector(".js-input").placeholder  = `Game Over!`;
-            alert("You lose! Try again.");
             currentEmoji = null;
         }
     }
@@ -137,7 +159,11 @@ function updateScore() {
 }
 
 function getHint() {
-    alert(currentEmoji.hint);
+    Swal.fire({
+        title: "Hint",
+        text: currentEmoji.hint,
+        icon: "info",
+    });
 }
 
 function restartGame() {
@@ -151,8 +177,3 @@ function restartGame() {
     updateScore();
     displayRandomEmoji();
 }
-
-window.addEventListener('load', () => {
-    displayRandomEmoji();
-    updateScore();
-});
